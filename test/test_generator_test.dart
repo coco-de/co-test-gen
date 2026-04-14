@@ -7,11 +7,7 @@ void main() {
     name: 'Email Login',
     tags: ['smoke', 'auth'],
     background: [
-      const Step(
-        keyword: 'Given',
-        text: 'I am on the login page',
-        params: [],
-      ),
+      const Step(keyword: 'Given', text: 'I am on the login page', params: []),
     ],
     scenarios: [
       const Scenario(
@@ -34,16 +30,12 @@ void main() {
       const Scenario(
         name: 'Patrol only scenario',
         tags: ['patrol-only'],
-        steps: [
-          Step(keyword: 'Given', text: 'app is running', params: []),
-        ],
+        steps: [Step(keyword: 'Given', text: 'app is running', params: [])],
       ),
       const Scenario(
         name: 'Widget only scenario',
         tags: ['widget-only'],
-        steps: [
-          Step(keyword: 'Given', text: 'widget is mounted', params: []),
-        ],
+        steps: [Step(keyword: 'Given', text: 'widget is mounted', params: [])],
       ),
     ],
   );

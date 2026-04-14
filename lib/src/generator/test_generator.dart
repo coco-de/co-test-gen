@@ -68,9 +68,7 @@ String generateWidgetTest(FeatureFile feature, {required String stepFolder}) {
         ? ", tags: [${tags.map((t) => "'$t'").join(', ')}]"
         : '';
 
-    buffer.writeln(
-      "  testWidgets('''${scenario.name}''', (tester) async {",
-    );
+    buffer.writeln("  testWidgets('''${scenario.name}''', (tester) async {");
 
     if (feature.background.isNotEmpty) {
       buffer.writeln('    await bddSetUp(tester);');
@@ -135,9 +133,7 @@ String generatePatrolTest(FeatureFile feature, {required String stepFolder}) {
   // Background → bddSetUp
   if (feature.background.isNotEmpty) {
     buffer
-      ..writeln(
-        r'  Future<void> bddSetUp(PatrolIntegrationTester $) async {',
-      )
+      ..writeln(r'  Future<void> bddSetUp(PatrolIntegrationTester $) async {')
       ..writeln(r'    final driver = PatrolTestDriver($);');
     for (final step in feature.background) {
       buffer.writeln('    await ${_driverStepCall(step)};');
