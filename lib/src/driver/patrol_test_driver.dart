@@ -18,6 +18,11 @@ import 'package:flutter_test/flutter_test.dart';
 ///   await iTapTheLoginButton(driver);
 /// });
 /// ```
+///
+/// **Note**: patrol API는 `Future<void>` 대신 `Future<PatrolFinder>` 등
+/// 구체 타입을 반환합니다. `as Future<void>` 직접 캐스트는 런타임
+/// `_TypeError: type 'Null' is not a subtype of type 'Future<void>'`를
+/// 유발하므로, 반환값은 `Object?`로 받아 `await`만 수행합니다.
 // ignore_for_file: avoid-dynamic
 class PatrolTestDriver extends TestDriver {
   /// Creates a driver wrapping the Patrol tester [$].
@@ -28,13 +33,14 @@ class PatrolTestDriver extends TestDriver {
 
   @override
   Future<void> tap(Key key) async {
-    // ignore: avoid-dynamic
-    await ($ as dynamic).call(find.byKey(key)).tap() as Future<void>;
+    final Object? future = ($ as dynamic).call(find.byKey(key)).tap();
+    if (future is Future) await future;
   }
 
   @override
   Future<void> tapText(String text) async {
-    await ($ as dynamic).call(text).tap() as Future<void>;
+    final Object? future = ($ as dynamic).call(text).tap();
+    if (future is Future) await future;
   }
 
   @override
@@ -43,13 +49,10 @@ class PatrolTestDriver extends TestDriver {
       of: find.byKey(key),
       matching: find.byType(EditableText),
     );
-    if (descendant.evaluate().isNotEmpty) {
-      await ($ as dynamic).call(descendant.first).enterText(text)
-          as Future<void>;
-    } else {
-      await ($ as dynamic).call(find.byKey(key)).enterText(text)
-          as Future<void>;
-    }
+    final Object? future = descendant.evaluate().isNotEmpty
+        ? ($ as dynamic).call(descendant.first).enterText(text)
+        : ($ as dynamic).call(find.byKey(key)).enterText(text);
+    if (future is Future) await future;
   }
 
   @override
@@ -64,32 +67,39 @@ class PatrolTestDriver extends TestDriver {
 
   @override
   Future<void> pumpWidget(Widget widget) async {
-    await ($ as dynamic).pumpWidgetAndSettle(widget) as Future<void>;
+    final Object? future = ($ as dynamic).pumpWidgetAndSettle(widget);
+    if (future is Future) await future;
   }
 
   @override
   Future<void> settle({Duration? timeout}) async {
-    await ($ as dynamic).pump(timeout ?? const Duration(seconds: 5))
-        as Future<void>;
+    final Object? future = ($ as dynamic).pump(
+      timeout ?? const Duration(seconds: 5),
+    );
+    if (future is Future) await future;
   }
 
   @override
   Future<void> wait(Duration duration) async {
-    await ($ as dynamic).pump(duration) as Future<void>;
+    final Object? future = ($ as dynamic).pump(duration);
+    if (future is Future) await future;
   }
 
   @override
   Future<void> pressHome() async {
-    await ($ as dynamic).native.pressHome() as Future<void>;
+    final Object? future = ($ as dynamic).native.pressHome();
+    if (future is Future) await future;
   }
 
   @override
   Future<void> openNotifications() async {
-    await ($ as dynamic).native.openQuickSettings() as Future<void>;
+    final Object? future = ($ as dynamic).native.openQuickSettings();
+    if (future is Future) await future;
   }
 
   @override
   Future<void> pressBack() async {
-    await ($ as dynamic).native.pressBack() as Future<void>;
+    final Object? future = ($ as dynamic).native.pressBack();
+    if (future is Future) await future;
   }
 }
