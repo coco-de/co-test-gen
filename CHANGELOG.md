@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/coco-de/co-test-gen/compare/v0.1.2...v0.2.0) (2026-07-28)
+
+
+### 기능
+
+* ✨ defaultTarget 옵션 — 실행할 수 없는 산출물 생성 차단 ([#10](https://github.com/coco-de/co-test-gen/issues/10)) ([c02f69d](https://github.com/coco-de/co-test-gen/commit/c02f69d78070d227763be2b0d3617136fcd67baa))
+
 ## [0.1.2](https://github.com/coco-de/co-test-gen/compare/v0.1.1...v0.1.2) (2026-07-21)
 
 
