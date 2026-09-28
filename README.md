@@ -1,5 +1,22 @@
 # co_test_gen
 
+> [!IMPORTANT]
+> **Moved and renamed.** This package now lives in
+> [`coco-de/co-package` → `packages/co_bdd`](https://github.com/coco-de/co-package/tree/main/packages/co_bdd)
+> as **`co_bdd`**, with its full history preserved. This repository is no longer
+> updated or released.
+>
+> 이 패키지는 이름을 **`co_bdd`** 로 바꿔 `coco-de/co-package` 의 `packages/co_bdd` 로
+> 옮겼습니다(히스토리 보존). 이 저장소는 더 이상 갱신·릴리스하지 않습니다.
+>
+> | | before | after |
+> |---|---|---|
+> | dependency | `co_test_gen` (git `coco-de/co-test-gen`) | `co_bdd` (git `coco-de/co-package`, `path: packages/co_bdd`) |
+> | import | `package:co_test_gen/co_test_gen.dart` | `package:co_bdd/co_bdd.dart` |
+> | builder key | `co_test_gen\|dual_test_gen` | `co_bdd\|dual_test_gen` |
+>
+> Existing pins to this repository keep working — the repository is not archived yet.
+
 BDD Dual Test Generator for Flutter — write Gherkin `.feature` files once, generate both **Widget Tests** and **Patrol E2E Tests** with shared step functions.
 
 ## Why?
